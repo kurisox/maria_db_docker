@@ -1,13 +1,26 @@
 services:
-  maria_db:
-    container_name: "$CONTAINER_NAME"
+  bibliothek:
+    container_name: "${CONTAINER_NAME_1}"
     image: mariadb
     command: "--default-authentication-plugin=mysql_native_password"
     environment:
       MYSQL_ROOT_USER: "${DB_USER}"
       MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
-      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_DATABASE: "${DB_NAME_1}"
     ports:
-      - "4030:3306"
+      - "${DB_PORT_1}:3306"
     volumes:
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./database/datenbank_bibliothek.sql:/docker-entrypoint-initdb.d/datenbank_bibliothek.sql
+
+  uebungen:
+    container_name: "${CONTAINER_NAME_2}"
+    image: mariadb
+    command: "--default-authentication-plugin=mysql_native_password"
+    environment:
+      MYSQL_ROOT_USER: "${DB_USER}"
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_DATABASE: "${DB_NAME_2}"
+    ports:
+      - "${DB_PORT_2}:3306"
+    volumes:
+      - ./database/datenbank_uebungen.sql:/docker-entrypoint-initdb.d/datenbank_uebungen.sql
