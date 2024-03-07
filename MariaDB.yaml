@@ -11,6 +11,7 @@ services:
       - "${DB_PORT_1}:3306"
     volumes:
       - ./database/datenbank_bibliothek.sql:/docker-entrypoint-initdb.d/datenbank_bibliothek.sql
+      - bibliothek:/var/lib/mysql
 
   uebungen:
     container_name: "${CONTAINER_NAME_2}"
@@ -24,3 +25,8 @@ services:
       - "${DB_PORT_2}:3306"
     volumes:
       - ./database/datenbank_uebungen.sql:/docker-entrypoint-initdb.d/datenbank_uebungen.sql
+      - uebungen:/var/lib/mysql
+
+volumes:
+  bibliothek:
+  uebungen:
