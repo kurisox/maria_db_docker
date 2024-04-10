@@ -1,0 +1,22 @@
+Kapitel 9:
+
+Aufgabe 1)
+    SELECT COUNT (*) FROM t_buecher;
+    SELECT COUNT (*) FROM t_leser;
+
+    SELECT leser, COUNT(isbn) AS Anzahl_Buecher FROM t_verleih GROUP BY leser;
+
+    SELECT leser, COUNT(isbn) AS Anzahl_Buecher FROM t_verleih GROUP BY leser DESC;
+
+    SELECT leser, COUNT(isbn) AS Anzahl_Buecher FROM t_verleih GROUP BY leser HAVING COUNT(isbn) > 1;
+
+    SELECT name, LENGTH(name) AS Anzahl_Zeichen FROM t_leser;
+
+    SELECT isbn, ROUND(preis) AS Aufgerundeter_Preis FROM t_buecher;
+
+Aufgabe 2)
+    CREATE TABLE t_mess (nr INT AUTO_INCREMENT PRIMARY KEY, wert INTEGER);
+
+    INSERT INTO t_mess (wert) VALUES (ROUND(1 + RAND() * 1000));
+
+    SELECT COUNT(wert) AS Anzahl, ROUND(AVG(wert)) AS Gerundeter_Durchschnitt, MIN(wert) AS Minimum, MAX(wert) AS Maximun FROM t_mess;
