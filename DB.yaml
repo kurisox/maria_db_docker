@@ -1,0 +1,16 @@
+services:
+  uebungen:
+    container_name: "${CONTAINER_NAME}"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      MYSQL_ROOT_USER: "${DB_USER}"
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - uebungen:/var/lib/mysql
+
+volumes:
+  uebungen:
