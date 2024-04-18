@@ -1,3 +1,59 @@
+Kapitel 7:
+
+Erstellen Sie eine Datenabfrage für die Tabelle t_ma, um die Vornamen und Familiennamen
+aller Mitarbeiter zu ermitteln. Begrenzen Sie das Abfrageergebnis auf 15 Datensätze. 
+
+SELECT vorname, name
+FROM t_ma
+LIMIT 15;
+
+
+Erweitern Sie die Abfrage, damit Sie zusätzlich die Postleitzahl und den Ort der Mitarbeiter
+erhalten. 
+
+SELECT vorname, name, plz, ort
+FROM t_ma
+LIMIT 15;
+
+Definieren Sie für alle Felder der Abfrage sinnvolle Ersatznamen. 
+
+SELECT vorname AS "First Name", name AS "Last Name", plz AS "Postal Code", ort AS "City"
+FROM t_ma
+LIMIT 15;
+
+Ändern Sie die Abfrage, sodass Sie nur Mitarbeiter aus Hamburg und Berlin erhalten.
+Verwenden Sie dazu die IN-Anweisung. Zusätzlich sollen die Mitarbeiter vor dem Jahr 1980
+geboren sein. Lassen Sie sich die Ergebnisse der Abfrage nach Familiennamen der Mitarbeiter sortieren.
+
+SELECT vorname AS "First Name", name AS "Last Name", plz AS "Postal Code", ort AS "City"
+FROM t_ma
+WHERE ort IN ('Hamburg', 'Berlin') AND jahr < 1980
+ORDER BY name
+LIMIT 15;
+
+Ermitteln Sie aus der Tabelle t_lager für jeden Artikel den Bruttopreis, indem Sie zu dem
+in der Tabelle gespeicherten Preis 19 % Mehrwertsteuer hinzufügen.
+Gruppieren Sie die Tabelle anhand der Stückzahl und ermitteln Sie in einer Abfrage die
+Anzahl der Artikel, die mit einer bestimmten Stückzahl vorhanden sind.
+Schränken Sie die Abfrage auf Stückzahlen mit weniger als 10 Artikeln ein.
+Sortieren Sie das Abfrageergebnis wenn möglich absteigend nach der Stückzahl. 
+
+SELECT preis * 1.19 AS "Gesamtbruttopreis"
+FROM t_lager
+GROUP BY stueckzahl
+HAVING COUNT(stueckzahl) < 10
+ORDER BY stueckzahl DESC;
+
+Kapitel 8:
+
+Erstellen Sie eine geeignete Abfrage, die den Index verwendet.
+
+SELECT * FROM t_buecher USE INDEX (idx_autor) WHERE autor = 'John Doe';
+
+SELECT * FROM t_buecher USE INDEX (idx_titel) WHERE titel = 'Der Hobbit';
+
+SELECT * FROM t_verleih USE INDEX (idx_isbn_leser) WHERE isbn = '9783161484100' AND leser = 123;
+
 Kapitel 9:
 
 Aufgabe 1)
