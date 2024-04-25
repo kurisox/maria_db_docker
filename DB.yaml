@@ -12,5 +12,20 @@ services:
     volumes:
       - uebungen:/var/lib/mysql
 
+  Klassenarbeit:
+    container_name: "klausur"
+    image: mariadb
+    command: "--default-authentication-plugin=mysql_native_password"
+    environment:
+      MYSQL_ROOT_USER: "${DB_USER}"
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_DATABASE: "Klausur"
+    ports:
+      - "4050:3306"
+    volumes:
+      - ./prüfungsscripts/datenbank_uebungen.sql:/docker-entrypoint-initdb.d/datenbank_uebungen.sql
+      - Klassenarbeit:/var/lib/mysql
+
 volumes:
   uebungen:
+  Klassenarbeit:
