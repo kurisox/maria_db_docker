@@ -76,3 +76,25 @@ Aufgabe 2)
     INSERT INTO t_mess (wert) VALUES (ROUND(1 + RAND() * 1000));
 
     SELECT COUNT(wert) AS Anzahl, ROUND(AVG(wert)) AS Gerundeter_Durchschnitt, MIN(wert) AS Minimum, MAX(wert) AS Maximun FROM t_mess;
+
+Kapitel 10:
+
+Erstellen Sie eine einfache Verknüpfung der Tabellen t_leser und t_verleih, um für jeden
+Leser die ausgeliehenen Bücher zu ermitteln. Lassen Sie sich in der Abfrage die Vor- und
+Familiennamen der Leser und die ISBN-Nummer anzeigen. 
+
+select * 
+    -> from t_leser
+    -> Inner join t_verleih
+    -> ON t_leser.nr=t_verleih.leser;    
+
+Verwenden Sie die gleiche Abfrage und ergänzen Sie diese um eine Sortierung nach
+Familiennamen und Vornamen der Leser.     
+
+select * 
+    -> from t_leser
+    -> Inner join t_verleih
+    -> ON t_leser.nr=t_verleih.leser  
+    -> Order by name, vname;
+
+    
