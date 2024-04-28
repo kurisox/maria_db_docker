@@ -1,4 +1,7 @@
-# Start-UP
+# Description
+Docker container for school assignments to avoid a local instance of MariaDB.
+
+## Start-UP
 1. Create .env file
 2. Paste the envs from the template into the .env file
 3. Fill the envs with values
